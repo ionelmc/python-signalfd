@@ -1,0 +1,5 @@
+signalfd
+========
+
+.. automodule:: signalfd
+    :members:

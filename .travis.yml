@@ -26,6 +26,8 @@ install:
   - pip install tox
 script:
   - tox -v
+after_failure:
+  - cat .tox/*/log/*.log
 notifications:
   email:
     on_success: never

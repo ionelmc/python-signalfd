@@ -1,8 +1,9 @@
 import os
 import signal
 
-import signalfd
+import pytest
 
+import signalfd
 
 def test_block_and_read():
     fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
@@ -13,3 +14,9 @@ def test_block_and_read():
         assert si.ssi_signo == signal.SIGUSR1
     finally:
         os.close(fd)
+
+
+def test_read_closed():
+    fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
+    os.close(fd)
+    pytest.raises(OSError, signalfd.read_siginfo, fd)

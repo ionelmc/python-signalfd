@@ -16,7 +16,7 @@ SIG_BLOCK = _lib.SIG_BLOCK
 SIG_UNBLOCK = _lib.SIG_UNBLOCK
 SIG_SETMASK = _lib.SIG_SETMASK
 
-SIGINFO_SIZE =_ffi.sizeof('struct signalfd_siginfo')
+SIGINFO_SIZE = _ffi.sizeof('struct signalfd_siginfo')
 
 
 class UnknownError(Exception):

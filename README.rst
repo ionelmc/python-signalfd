@@ -8,7 +8,7 @@ signalfd
     * - docs
       - |docs|
     * - tests
-      - | |travis| |appveyor| |requires|
+      - | |travis| |requires|
         | |coveralls| |codecov|
     * - package
       - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
@@ -20,10 +20,6 @@ signalfd
 .. |travis| image:: https://travis-ci.org/ionelmc/python-signalfd.svg?branch=master
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/ionelmc/python-signalfd
-
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/ionelmc/python-signalfd?branch=master&svg=true
-    :alt: AppVeyor Build Status
-    :target: https://ci.appveyor.com/project/ionelmc/python-signalfd
 
 .. |requires| image:: https://requires.io/github/ionelmc/python-signalfd/requirements.svg?branch=master
     :alt: Requirements Status

@@ -3,61 +3,23 @@
 from __future__ import absolute_import, print_function
 
 import io
-import os
 import re
+import sys
 from glob import glob
 from os.path import basename
 from os.path import dirname
 from os.path import join
-from os.path import relpath
 from os.path import splitext
 
 from setuptools import find_packages
 from setuptools import setup
-from setuptools.command.build_ext import build_ext
-from distutils.core import Extension
-from distutils.errors import CCompilerError
-from distutils.errors import CompileError
-from distutils.errors import DistutilsExecError
-from distutils.errors import DistutilsPlatformError
+
 
 def read(*names, **kwargs):
     return io.open(
         join(dirname(__file__), *names),
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
-
-
-class optional_build_ext(build_ext):
-    '''Allow the building of C extensions to fail.'''
-    def run(self):
-        try:
-            build_ext.run(self)
-        except DistutilsPlatformError as e:
-            self._unavailable(e)
-            self.extensions = []  # avoid copying missing files (it would fail).
-
-    def build_extension(self, ext):
-        try:
-            build_ext.build_extension(self, ext)
-        except (CCompilerError, CompileError, DistutilsExecError) as e:
-            self._unavailable(e)
-            self.extensions = []  # avoid copying missing files (it would fail).
-
-    def _unavailable(self, e):
-        print('*' * 80)
-        print('''WARNING:
-
-    An optional code optimization (C extension) could not be compiled.
-
-    Optimizations for this package will not be available!
-        ''')
-
-        print('CAUSE:')
-        print('')
-        print('    ' + repr(e))
-        print('*' * 80)
-
 
 setup(
     name='signalfd',
@@ -94,22 +56,16 @@ setup(
     keywords=[
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
+    setup_requires=[
+        "cffi>=1.0.0"
+    ] if any(i.startswith('build') or i.startswith('bdist') for i in sys.argv) else [],
     install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
+        "cffi>=1.0.0",
     ],
     extras_require={
         # eg:
         #   'rst': ['docutils>=0.11'],
         #   ':python_version=="2.6"': ['argparse'],
     },
-    cmdclass={'build_ext': optional_build_ext},
-    ext_modules=[
-        Extension(
-            splitext(relpath(path, 'src').replace(os.sep, '.'))[0],
-            sources=[path],
-            include_dirs=[dirname(path)]
-        )
-        for root, _, _ in os.walk('src')
-        for path in glob(join(root, '*.c'))
-    ]
+    cffi_modules=[i + ":ffi" for i in glob("src/*/_*_build.py")],
 )

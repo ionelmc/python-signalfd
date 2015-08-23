@@ -29,18 +29,13 @@ signalfd
     :alt: Requirements Status
     :target: https://requires.io/github/ionelmc/python-signalfd/requirements/?branch=master
 
-
 .. |coveralls| image:: https://coveralls.io/repos/ionelmc/python-signalfd/badge.svg?branch=master&service=github
     :alt: Coverage Status
     :target: https://coveralls.io/r/ionelmc/python-signalfd
 
-
 .. |codecov| image:: https://codecov.io/github/ionelmc/python-signalfd/coverage.svg?branch=master
     :alt: Coverage Status
     :target: https://codecov.io/github/ionelmc/python-signalfd
-
-
-
 
 .. |version| image:: https://img.shields.io/pypi/v/signalfd.svg?style=flat
     :alt: PyPI Package latest release
@@ -62,7 +57,7 @@ signalfd
     :alt: Supported imlementations
     :target: https://pypi.python.org/pypi/signalfd
 
-CFFI bindings for signalfd.
+CFFI bindings for signalfd. Interface is mostly the same as https://pypi.python.org/pypi/python-signalfd
 
 * Free software: BSD license
 
@@ -72,6 +67,24 @@ Installation
 ::
 
     pip install signalfd
+
+Usage
+=====
+
+.. sourcecode:: python
+
+    import signalfd
+
+    fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
+    try:
+        signalfd.sigprocmask(signalfd.SIG_BLOCK, [signal.SIGUSR1])
+
+        while True:
+            si = signalfd.read_siginfo(fd)
+            print(si.ssi_signo)
+    finally:
+        os.close(fd)
+
 
 Documentation
 =============

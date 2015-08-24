@@ -7,7 +7,7 @@ import os
 from ._signalfd import ffi as _ffi
 from ._signalfd import lib as _lib
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 SFD_CLOEXEC = _lib.SFD_CLOEXEC
 SFD_NONBLOCK = _lib.SFD_NONBLOCK

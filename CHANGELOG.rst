@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.3.0 (2015-08-24)
+------------------
+
+* Corrected error handling in signalfd and sigprocmask wrappers.
+
 0.2.0 (2015-08-24)
 ------------------
 

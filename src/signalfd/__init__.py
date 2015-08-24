@@ -39,7 +39,7 @@ def signalfd(fd, signals, flags):
     result = _lib.signalfd(fd, sigmask, flags)
 
     if result < 0:
-        err = _lib.errno
+        err = _ffi.errno
         if err == errno.EBADF:
             raise ValueError("fd: not a valid file descriptor.")
         elif err == errno.EINVAL:
@@ -72,10 +72,9 @@ def sigprocmask(flags, signals):
     for sig in signals:
         _lib.sigaddset(new_sigmask, sig)
 
-    ret = _lib.pthread_sigmask(flags, new_sigmask, old_sigmask)
+    err = _lib.pthread_sigmask(flags, new_sigmask, old_sigmask)
 
-    if ret < 0:
-        err = _ffi.errno
+    if err:
         if err == errno.EINVAL:
             raise ValueError("flags: invalid value (not one of SIG_BLOCK, SIG_UNBLOCK or SIG_SETMASK)")
         elif err == errno.EFAULT:

@@ -41,3 +41,31 @@ def test_read_closed():
     fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
     os.close(fd)
     pytest.raises(OSError, signalfd.read_siginfo, fd)
+
+
+def test_invalid_fd():
+    pytest.raises(ValueError, signalfd.signalfd, 0, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
+
+
+def test_invalid_fd_2():
+    pytest.raises(ValueError, signalfd.signalfd, 999999999, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
+
+
+def test_invalid_flags_str():
+    pytest.raises(TypeError, signalfd.signalfd, -1, [signal.SIGUSR1], "sadfsadf")
+
+
+def test_invalid_flags_float():
+    pytest.raises(TypeError, signalfd.signalfd, -1, [signal.SIGUSR1], 1.2)
+
+
+def test_invalid_signals():
+    pytest.raises(TypeError, signalfd.signalfd, -1, "fooo", 0)
+
+
+def test_invalid_signals_noniterable():
+    pytest.raises(TypeError, signalfd.signalfd, -1, object(), 0)
+
+
+def test_invalid_flags():
+    pytest.raises(ValueError, signalfd.signalfd, -1, [signal.SIGUSR1], 123123)

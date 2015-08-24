@@ -89,7 +89,8 @@ def read_siginfo(fh):
     buffer = _ffi.buffer(info)
 
     if hasattr(fh, 'readinto'):
-        fh.readinto(buffer)
+        if not fh.readinto(buffer):
+            raise IOError(errno.EAGAIN, "not enough bytes available")
     else:
         buffer[:] = os.read(fh, SIGINFO_SIZE)
     return info

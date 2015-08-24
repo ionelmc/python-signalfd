@@ -20,7 +20,7 @@ def test_block_and_read():
 def test_read_fd_no_data():
     fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC | signalfd.SFD_NONBLOCK )
     try:
-        err = pytest.raises(IOError, signalfd.read_siginfo, fd)
+        err = pytest.raises((OSError, IOError), signalfd.read_siginfo, fd)
         assert err.value.errno == errno.EAGAIN
     finally:
         os.close(fd)
@@ -30,7 +30,7 @@ def test_read_fh_no_data():
     fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC | signalfd.SFD_NONBLOCK )
     fh = os.fdopen(fd, 'rb')
     try:
-        err = pytest.raises(IOError, signalfd.read_siginfo, fh)
+        err = pytest.raises((OSError, IOError), signalfd.read_siginfo, fh)
         assert err.value.errno == errno.EAGAIN
     finally:
         fh.close()

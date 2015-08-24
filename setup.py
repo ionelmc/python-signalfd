@@ -23,7 +23,7 @@ def read(*names, **kwargs):
 
 setup(
     name='signalfd',
-    version='0.3.0',
+    version='0.4.0',
     license='BSD',
     description='CFFI bindings for signalfd.',
     long_description='%s\n%s' % (read('README.rst'), re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))),

@@ -3,6 +3,7 @@ Simple wrapper around the signalfd syscall.
 """
 import errno
 import os
+import signal
 
 from ._signalfd import ffi as _ffi
 from ._signalfd import lib as _lib
@@ -17,6 +18,7 @@ SIG_UNBLOCK = _lib.SIG_UNBLOCK
 SIG_SETMASK = _lib.SIG_SETMASK
 
 SIGINFO_SIZE = _ffi.sizeof('struct signalfd_siginfo')
+ALL_SIGNALS = sorted(getattr(signal, s) for s in dir(signal) if s.startswith('SIG') and '_' not in s)
 
 
 class UnknownError(Exception):
@@ -81,6 +83,8 @@ def sigprocmask(flags, signals):
             raise ValueError("sigmask is not a valid sigset_t")
         else:
             raise UnknownError(err)
+
+    return [s for s in ALL_SIGNALS if _lib.sigismember(old_sigmask, s)]
 
 
 def read_siginfo(fh):

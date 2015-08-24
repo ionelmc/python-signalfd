@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.4.0 (2015-08-25)
+------------------
+
+* Corrected return value for sigprocmask.
+
 0.3.0 (2015-08-24)
 ------------------
 

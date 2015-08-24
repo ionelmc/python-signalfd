@@ -6,6 +6,7 @@ import pytest
 
 import signalfd
 
+
 def test_block_and_read():
     fd = signalfd.signalfd(-1, [signal.SIGUSR1], signalfd.SFD_CLOEXEC)
     try:

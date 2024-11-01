@@ -26,12 +26,15 @@ struct signalfd_siginfo {
 };
 """)
 
-ffi.cdef("""
+ffi.cdef(
+    """
 typedef struct {
     unsigned long int __val[%d];
 } sigset_t;
 int signalfd(int fd, const sigset_t *mask, int flags);
-""" % (1024 / 8 * ffi.sizeof('unsigned long int')))
+"""
+    % (1024 / 8 * ffi.sizeof('unsigned long int'))
+)
 
 ffi.cdef("""
 int sigemptyset(sigset_t *set);
@@ -49,11 +52,14 @@ int pthread_sigmask(int how, const sigset_t *set, sigset_t *oldset);
 int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
 """)
 
-ffi.set_source("signalfd._signalfd", """
+ffi.set_source(
+    'signalfd._signalfd',
+    """
 #include <sys/signalfd.h>
 #include <stdint.h> /* Definition of uint64_t */
 #include <signal.h>
-""")
+""",
+)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     ffi.compile()

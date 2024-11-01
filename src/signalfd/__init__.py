@@ -1,6 +1,7 @@
 """
 Simple wrapper around the signalfd syscall.
 """
+
 import errno
 import os
 import signal
@@ -8,7 +9,7 @@ import signal
 from ._signalfd import ffi as _ffi
 from ._signalfd import lib as _lib
 
-__version__ = "0.4.0"
+__version__ = '0.4.0'
 
 SFD_CLOEXEC = _lib.SFD_CLOEXEC
 SFD_NONBLOCK = _lib.SFD_NONBLOCK
@@ -43,20 +44,20 @@ def signalfd(fd, signals, flags):
     if result < 0:
         err = _ffi.errno
         if err == errno.EBADF:
-            raise ValueError("fd: not a valid file descriptor.")
+            raise ValueError('fd: not a valid file descriptor.')
         elif err == errno.EINVAL:
-            if flags & (0xffffffff ^ (SFD_CLOEXEC | SFD_NONBLOCK)):
-                raise ValueError("flags: mask contains invalid values.")
+            if flags & (0xFFFFFFFF ^ (SFD_CLOEXEC | SFD_NONBLOCK)):
+                raise ValueError('flags: mask contains invalid values.')
             else:
-                raise ValueError("fd: not a signalfd.")
+                raise ValueError('fd: not a signalfd.')
         elif err == errno.EMFILE:
-            raise OSError("max system fd limit reached.")
+            raise OSError('max system fd limit reached.')
         elif err == errno.ENFILE:
-            raise OSError("max system fd limit reached.")
+            raise OSError('max system fd limit reached.')
         elif err == errno.ENODEV:
-            raise OSError("could not mount (internal) anonymous inode device.")
+            raise OSError('could not mount (internal) anonymous inode device.')
         elif err == errno.ENOMEM:
-            raise MemoryError("insufficient kernel memory available.")
+            raise MemoryError('insufficient kernel memory available.')
         else:
             raise UnknownError(err)
 
@@ -78,9 +79,9 @@ def sigprocmask(flags, signals):
 
     if err:
         if err == errno.EINVAL:
-            raise ValueError("flags: invalid value (not one of SIG_BLOCK, SIG_UNBLOCK or SIG_SETMASK)")
+            raise ValueError('flags: invalid value (not one of SIG_BLOCK, SIG_UNBLOCK or SIG_SETMASK)')
         elif err == errno.EFAULT:
-            raise ValueError("sigmask is not a valid sigset_t")
+            raise ValueError('sigmask is not a valid sigset_t')
         else:
             raise UnknownError(err)
 
@@ -93,7 +94,7 @@ def read_siginfo(fh):
 
     if hasattr(fh, 'readinto'):
         if not fh.readinto(buffer):
-            raise IOError(errno.EAGAIN, "not enough bytes available")
+            raise OSError(errno.EAGAIN, 'not enough bytes available')
     else:
         buffer[:] = os.read(fh, SIGINFO_SIZE)
     return info

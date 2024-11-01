@@ -52,7 +52,7 @@ def test_invalid_fd_2():
 
 
 def test_invalid_flags_str():
-    pytest.raises(TypeError, signalfd.signalfd, -1, [signal.SIGUSR1], "sadfsadf")
+    pytest.raises(TypeError, signalfd.signalfd, -1, [signal.SIGUSR1], 'sadfsadf')
 
 
 def test_invalid_flags_float():
@@ -60,7 +60,7 @@ def test_invalid_flags_float():
 
 
 def test_invalid_signals():
-    pytest.raises(TypeError, signalfd.signalfd, -1, "fooo", 0)
+    pytest.raises(TypeError, signalfd.signalfd, -1, 'fooo', 0)
 
 
 def test_invalid_signals_noniterable():

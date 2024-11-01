@@ -6,7 +6,7 @@ import signalfd
 
 
 def test_invalid_flags_str():
-    pytest.raises(TypeError, signalfd.sigprocmask, "sadfsadf", [signal.SIGUSR1])
+    pytest.raises(TypeError, signalfd.sigprocmask, 'sadfsadf', [signal.SIGUSR1])
 
 
 def test_invalid_flags_float():
@@ -14,7 +14,7 @@ def test_invalid_flags_float():
 
 
 def test_invalid_signals():
-    pytest.raises(TypeError, signalfd.sigprocmask, 0, "foo")
+    pytest.raises(TypeError, signalfd.sigprocmask, 0, 'foo')
 
 
 def test_invalid_signals_noniterable():

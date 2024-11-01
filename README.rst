@@ -1,6 +1,8 @@
 ========
-signalfd
+Overview
 ========
+
+.. start-badges
 
 .. list-table::
     :stub-columns: 1
@@ -8,52 +10,49 @@ signalfd
     * - docs
       - |docs|
     * - tests
-      - | |travis| |requires|
-        | |coveralls| |codecov|
+      - |github-actions| |coveralls| |codecov|
     * - package
-      - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
-
+      - |version| |wheel| |supported-versions| |supported-implementations| |commits-since|
 .. |docs| image:: https://readthedocs.org/projects/python-signalfd/badge/?style=flat
-    :target: https://readthedocs.org/projects/python-signalfd
+    :target: https://readthedocs.org/projects/python-signalfd/
     :alt: Documentation Status
 
-.. |travis| image:: https://travis-ci.org/ionelmc/python-signalfd.svg?branch=master
-    :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/ionelmc/python-signalfd
+.. |github-actions| image:: https://github.com/ionelmc/python-signalfd/actions/workflows/github-actions.yml/badge.svg
+    :alt: GitHub Actions Build Status
+    :target: https://github.com/ionelmc/python-signalfd/actions
 
-.. |requires| image:: https://requires.io/github/ionelmc/python-signalfd/requirements.svg?branch=master
-    :alt: Requirements Status
-    :target: https://requires.io/github/ionelmc/python-signalfd/requirements/?branch=master
-
-.. |coveralls| image:: https://coveralls.io/repos/ionelmc/python-signalfd/badge.svg?branch=master&service=github
+.. |coveralls| image:: https://coveralls.io/repos/github/ionelmc/python-signalfd/badge.svg?branch=main
     :alt: Coverage Status
-    :target: https://coveralls.io/r/ionelmc/python-signalfd
+    :target: https://coveralls.io/github/ionelmc/python-signalfd?branch=main
 
-.. |codecov| image:: https://codecov.io/github/ionelmc/python-signalfd/coverage.svg?branch=master
+.. |codecov| image:: https://codecov.io/gh/ionelmc/python-signalfd/branch/main/graphs/badge.svg?branch=main
     :alt: Coverage Status
-    :target: https://codecov.io/github/ionelmc/python-signalfd
+    :target: https://app.codecov.io/github/ionelmc/python-signalfd
 
-.. |version| image:: https://img.shields.io/pypi/v/signalfd.svg?style=flat
+.. |version| image:: https://img.shields.io/pypi/v/signalfd.svg
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/signalfd
+    :target: https://pypi.org/project/signalfd
 
-.. |downloads| image:: https://img.shields.io/pypi/dm/signalfd.svg?style=flat
-    :alt: PyPI Package monthly downloads
-    :target: https://pypi.python.org/pypi/signalfd
-
-.. |wheel| image:: https://img.shields.io/pypi/wheel/signalfd.svg?style=flat
+.. |wheel| image:: https://img.shields.io/pypi/wheel/signalfd.svg
     :alt: PyPI Wheel
-    :target: https://pypi.python.org/pypi/signalfd
+    :target: https://pypi.org/project/signalfd
 
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/signalfd.svg?style=flat
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/signalfd.svg
     :alt: Supported versions
-    :target: https://pypi.python.org/pypi/signalfd
+    :target: https://pypi.org/project/signalfd
 
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/signalfd.svg?style=flat
-    :alt: Supported imlementations
-    :target: https://pypi.python.org/pypi/signalfd
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/signalfd.svg
+    :alt: Supported implementations
+    :target: https://pypi.org/project/signalfd
+
+.. |commits-since| image:: https://img.shields.io/github/commits-since/ionelmc/python-signalfd/v0.4.0.svg
+    :alt: Commits since latest release
+    :target: https://github.com/ionelmc/python-signalfd/compare/v0.4.0...main
+
 
 CFFI bindings for signalfd. Interface is mostly the same as https://pypi.python.org/pypi/python-signalfd
+
+.. end-badges
 
 * Free software: BSD license
 

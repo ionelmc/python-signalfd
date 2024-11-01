@@ -1,0 +1,238 @@
+name: build
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: 'check'
+            python: '3.11'
+            toxpython: 'python3.11'
+            tox_env: 'check'
+            os: 'ubuntu-latest'
+          - name: 'docs'
+            python: '3.11'
+            toxpython: 'python3.11'
+            tox_env: 'docs'
+            os: 'ubuntu-latest'
+          - name: 'py39 (ubuntu/x86_64)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'py39 (windows/AMD64)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'py39 (macos/x86_64)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            tox_env: 'py39'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+          - name: 'py310 (ubuntu/x86_64)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'py310 (windows/AMD64)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'py310 (macos/x86_64)'
+            python: '3.10'
+            toxpython: 'python3.10'
+            python_arch: 'x64'
+            tox_env: 'py310'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+          - name: 'py311 (ubuntu/x86_64)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'py311 (windows/AMD64)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'py311 (macos/x86_64)'
+            python: '3.11'
+            toxpython: 'python3.11'
+            python_arch: 'x64'
+            tox_env: 'py311'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+          - name: 'py312 (ubuntu/x86_64)'
+            python: '3.12'
+            toxpython: 'python3.12'
+            python_arch: 'x64'
+            tox_env: 'py312'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'py312 (windows/AMD64)'
+            python: '3.12'
+            toxpython: 'python3.12'
+            python_arch: 'x64'
+            tox_env: 'py312'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'py312 (macos/x86_64)'
+            python: '3.12'
+            toxpython: 'python3.12'
+            python_arch: 'x64'
+            tox_env: 'py312'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+          - name: 'pypy39 (ubuntu/x86_64)'
+            python: 'pypy-3.9'
+            toxpython: 'pypy3.9'
+            python_arch: 'x64'
+            tox_env: 'pypy39'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'pypy39 (windows/AMD64)'
+            python: 'pypy-3.9'
+            toxpython: 'pypy3.9'
+            python_arch: 'x64'
+            tox_env: 'pypy39'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'pypy39 (macos/x86_64)'
+            python: 'pypy-3.9'
+            toxpython: 'pypy3.9'
+            python_arch: 'x64'
+            tox_env: 'pypy39'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+          - name: 'pypy310 (ubuntu/x86_64)'
+            python: 'pypy-3.10'
+            toxpython: 'pypy3.10'
+            python_arch: 'x64'
+            tox_env: 'pypy310'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'ubuntu-latest'
+          - name: 'pypy310 (windows/AMD64)'
+            python: 'pypy-3.10'
+            toxpython: 'pypy3.10'
+            python_arch: 'x64'
+            tox_env: 'pypy310'
+            cibw_arch: 'AMD64'
+            cibw_build: false
+            os: 'windows-latest'
+          - name: 'pypy310 (macos/x86_64)'
+            python: 'pypy-3.10'
+            toxpython: 'pypy3.10'
+            python_arch: 'x64'
+            tox_env: 'pypy310'
+            cibw_arch: 'x86_64'
+            cibw_build: false
+            os: 'macos-latest'
+    steps:
+    - uses: docker/setup-qemu-action@v3
+      if: matrix.cibw_arch == 'aarch64'
+      with:
+        platforms: arm64
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python }}
+        architecture: ${{ matrix.python_arch }}
+    - name: install dependencies
+      run: |
+        python -mpip install --progress-bar=off cibuildwheel -r ci/requirements.txt
+        virtualenv --version
+        pip --version
+        tox --version
+        pip list --format=freeze
+    - name: cibw build and test
+      if: matrix.cibw_build
+      run: cibuildwheel
+      env:
+        TOXPYTHON: '${{ matrix.toxpython }}'
+        CIBW_ARCHS: '${{ matrix.cibw_arch }}'
+        CIBW_BUILD: '${{ matrix.cibw_build }}'
+        CIBW_BUILD_VERBOSITY: '3'
+        CIBW_TEST_REQUIRES: >
+          tox
+          tox-direct
+        CIBW_TEST_COMMAND: >
+          cd {project} &&
+          tox --skip-pkg-install --direct-yolo -e ${{ matrix.tox_env }} -v
+        CIBW_TEST_COMMAND_WINDOWS: >
+          cd /d {project} &&
+          tox --skip-pkg-install --direct-yolo -e ${{ matrix.tox_env }} -v
+    - name: regular build and test
+      env:
+        TOXPYTHON: '${{ matrix.toxpython }}'
+      if: >
+        !matrix.cibw_build
+      run: >
+        tox -e ${{ matrix.tox_env }} -v
+    - uses: coverallsapp/github-action@v2
+      if: matrix.cover
+      continue-on-error: true
+      with:
+        parallel: true
+        flag-name: ${{ matrix.tox_env }}
+    - uses: codecov/codecov-action@v3
+      if: matrix.cover
+      with:
+        verbose: true
+        flags: ${{ matrix.tox_env }}
+    - name: check wheel
+      if: matrix.cibw_build
+      run: twine check wheelhouse/*.whl
+    - name: upload wheel
+      uses: actions/upload-artifact@v3
+      if: matrix.cibw_build
+      with:
+        path: wheelhouse/*.whl
+  finish:
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true
+    - uses: codecov/codecov-action@v3
+      with:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

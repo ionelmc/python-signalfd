@@ -29,7 +29,7 @@ default_context:
     release_date: '2015-08-25'
     repo_hosting: github.com
     repo_hosting_domain: github.com
-    repo_main_branch: main
+    repo_main_branch: master
     repo_name: python-signalfd
     repo_username: ionelmc
     scrutinizer: 'no'

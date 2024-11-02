@@ -26,17 +26,17 @@ struct signalfd_siginfo {
 };
 """)
 
+sigset_t_size = 1024 // (8 * ffi.sizeof('unsigned long int'))
 ffi.cdef(
-    """
-typedef struct {
-    unsigned long int __val[%d];
-} sigset_t;
-int signalfd(int fd, const sigset_t *mask, int flags);
+    f"""
+typedef struct {{
+    unsigned long int __val[{sigset_t_size}];
+}} sigset_t;
 """
-    % (1024 / 8 * ffi.sizeof('unsigned long int'))
 )
 
 ffi.cdef("""
+int signalfd(int fd, const sigset_t *mask, int flags);
 int sigemptyset(sigset_t *set);
 int sigfillset(sigset_t *set);
 int sigaddset(sigset_t *set, int signum);

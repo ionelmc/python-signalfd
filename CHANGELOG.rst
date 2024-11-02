@@ -2,6 +2,13 @@
 Changelog
 =========
 
+1.0.0 (2024-11-02)
+------------------
+
+* Fixed build issue caused by incorrect sigset_t size calculation.
+* Updated various project boilerplate.
+* Dropped support for EOL Python 3.8.
+
 0.4.0 (2015-08-25)
 ------------------
 

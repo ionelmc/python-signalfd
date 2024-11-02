@@ -46,9 +46,9 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/signalfd
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/ionelmc/python-signalfd/v0.4.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/ionelmc/python-signalfd/v1.0.0.svg
     :alt: Commits since latest release
-    :target: https://github.com/ionelmc/python-signalfd/compare/v0.4.0...master
+    :target: https://github.com/ionelmc/python-signalfd/compare/v1.0.0...master
 
 .. end-badges
 

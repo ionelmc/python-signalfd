@@ -25,7 +25,7 @@ def read(*names, **kwargs):
 
 setup(
     name='signalfd',
-    version='0.4.0',
+    version='1.0.0',
     license='BSD-2-Clause',
     description='CFFI bindings for signalfd.',
     long_description='{}\n{}'.format(
